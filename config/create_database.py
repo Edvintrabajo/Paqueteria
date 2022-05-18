@@ -1,9 +1,8 @@
 import sqlite3
 def create_database(db_file):
     conn = sqlite3.connect(db_file) # Warning: This file is created in the current directory
-    conn.execute("CREATE TABLE todo (id INTEGER PRIMARY KEY, task char(100) NOT NULL, status bool NOT NULL)")
-    conn.execute("INSERT INTO todo (task,status) VALUES ('Read A-byte-of-python to get a good introduction into Python',0)")
-    conn.execute("INSERT INTO todo (task,status) VALUES ('Visit the Python website',1)")
-    conn.execute("INSERT INTO todo (task,status) VALUES ('Test various editors for and check the syntax highlighting',1)")
-    conn.execute("INSERT INTO todo (task,status) VALUES ('Choose your favorite WSGI-Framework',0)")
+    conn.execute("CREATE TABLE Cliente (DNIcliente char(9) PRIMARY KEY, Nombre char(30) NOT NULL, Apellidos char(30) NOT NULL, DireccionCliente char(50) NOT NULL)")
+    conn.execute("INSERT INTO Cliente (DNIcliente, Nombre, Apellidos, DireccionCliente) VALUES ('12345678A', 'Carlos', 'Freyer', 'Las Palmas')")
+    conn.execute("INSERT INTO Cliente (DNIcliente, Nombre, Apellidos, DireccionCliente) VALUES ('12345678B', 'Mario', 'Alonso', 'Telde')")
+    conn.execute("INSERT INTO Cliente (DNIcliente, Nombre, Apellidos, DireccionCliente) VALUES ('12345678C', 'Richard', 'Ramirez', 'Galdar')")
     conn.commit()
