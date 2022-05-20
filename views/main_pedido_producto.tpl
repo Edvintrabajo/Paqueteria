@@ -1,7 +1,8 @@
 % include('header.tpl', title = "Pedido-Producto")
 <p>Asignar un producto a un pedido:</p>
 <form action="/new_pedido_producto" method="POST">
-    <input type="text" size="65" maxlength="100" name="Pedido-Producto">
+    <input type="text" placeholder="ID Pedido" size="10" maxlength="100" name="ID Pedido">
+    <input type="text" placeholder="ID Producto" size="10" maxlength="100" name="ID Producto">
     <input type="submit" name="save" value="Añadir">
 </form>
 <p>Estos son los productos asignados a cada pedido:</p>
