@@ -1,5 +1,5 @@
 % include('header.tpl', title = "Oficinistas")
-<p>Añadir un nuevo oficinista:</p>
+<p>Añadir un nuevo cliente:</p>
 <form action="/new_oficinista" method="POST">
     <input type="text" size="65" maxlength="100" name="Oficinista">
     <input type="submit" name="save" value="Añadir">
