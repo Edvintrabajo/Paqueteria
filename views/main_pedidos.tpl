@@ -1,7 +1,13 @@
 % include('header.tpl', title = "pedidos")
 <p>Añadir un nuevo pedido:</p>
 <form action="/new_pedido" method="POST">
-    <input type="text" size="65" maxlength="100" name="pedido">
+    <input type="text" placeholder="Peso" size="10" maxlength="100" name="Peso">
+    <input type="text" placeholder="Coste" size="10" maxlength="100" name="Coste">
+    <input type="text" placeholder="Distancia" size="10" maxlength="100" name="Distancia">
+    <input type="text" placeholder="Direccion" size="10" maxlength="100" name="Direccion">
+    <input type="text" placeholder="Estado" size="10" maxlength="100" name="Estado">
+    <input type="text" placeholder="DNI Repartidor" size="10" maxlength="100" name="DNI Repartidor">
+    <input type="text" placeholder="DNI Cliente" size="10" maxlength="100" name="DNI Cliente">
     <input type="submit" name="save" value="Añadir">
 </form>
 <p>Los pedidos actuales son los siguientes:</p>
