@@ -2,6 +2,8 @@
 <p>Añadir un nuevo oficinista:</p>
 <form action="/new_oficinista" method="POST">
     <input type="text" size="65" maxlength="100" name="Oficinista">
+
+    <input type="text" placeholder="Nombre" size="20" maxlength="100" name="Nombre">
     <input type="submit" name="save" value="Añadir">
 </form>
 <p>Los oficinistas actuales son los siguientes:</p>
