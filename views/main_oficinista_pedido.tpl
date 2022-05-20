@@ -1,7 +1,8 @@
 % include('header.tpl', title = "Oficinistas-Pedidos")
 <p>Asignar un oficinista a un pedido:</p>
 <form action="/new_oficinista_pedido" method="POST">
-    <input type="text" size="65" maxlength="100" name="Oficinista_pedido">
+    <input type="text" placeholder="ID Pedido" size="10" maxlength="100" name="ID Pedido">
+    <input type="text" placeholder="ID Oficinista" size="10" maxlength="100" name="ID Oficinista">
     <input type="submit" name="save" value="Añadir">
 </form>
 <p>Estos son los oficinistas asignados a cada pedido:</p>
