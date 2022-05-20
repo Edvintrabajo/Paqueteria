@@ -1,13 +1,13 @@
-% include('header.tpl', title = "Oficinistas")
-<p>Añadir un nuevo cliente:</p>
-<form action="/new_oficinista" method="POST">
-    <input type="text" size="65" maxlength="100" name="Oficinista">
+% include('header.tpl', title = "repartidores")
+<p>Añadir un nuevo repartidor:</p>
+<form action="/new_repartidor" method="POST">
+    <input type="text" size="65" maxlength="100" name="repartidor">
     <input type="submit" name="save" value="Añadir">
 </form>
-<p>Los oficinistas actuales son los siguientes:</p>
+<p>Los repartidores actuales son los siguientes:</p>
 <table border="1">
     <tr>
-        <th>ID</th>
+        <th>DNI</th>
         <th>Nombre</th>
         <th colspan="2">Acciones</th>
     </tr>
@@ -17,12 +17,12 @@
             <td>{{row[i]}}</td>
         %end
         <td>
-            <form action="/edit_oficinista/{{row[0]}}" method="GET">
+            <form action="/edit_repartidor/{{row[0]}}" method="GET">
                 <input type="submit" name="edit" value="Editar">
             </form>
         </td>
         <td>
-            <form action="/delete_oficinista/{{row[0]}}" method="GET">
+            <form action="/delete_repartidor/{{row[0]}}" method="GET">
                 <input type="submit" name="delete" value="Borrar">
             </form>
         </td>
