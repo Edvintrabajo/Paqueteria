@@ -24,8 +24,25 @@ class Cliente:
             if conn:
                 conn.close()
             return data
+    
+    def get_dni(self,no):
 
-
+        data = None
+        try:
+            conn = self.__connect()
+            c = conn.cursor()
+            c.execute("SELECT DNIcliente FROM Cliente WHERE DNIcliente LIKE ?", (str(no),))
+            data = c.fetchone()
+            conn.commit()
+            c.close()
+        
+        except sqlite3.Error as error:
+            print("Error while executing sqlite script", error)
+        
+        finally:
+            if conn:
+                conn.close()
+            return data
 ###
 if __name__ == "__main__": 
     all = Cliente("paqueteria.db")
