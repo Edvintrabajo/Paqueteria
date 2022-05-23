@@ -1,49 +1,10 @@
 import sqlite3
+from table import Table
+from config import DATABASE
 
-class Cliente:
-    def __init__(self, database):
-        self.database = database
-    
-    def __connect(self):
-        conn = sqlite3.connect(self.database)
-        return conn
+TABLE_NAME = 'Cliente'
 
-    def select_cliente(self):
-        data = None
-        try:
-            conn = self.__connect()
-            c = conn.cursor()
-            c.execute("SELECT * FROM Cliente")
-            data = c.fetchall() # Cursor
-            conn.commit()
-            c.close()
-        except sqlite3.Error as error:
-            print("No se ha podido mostar los Clientes", error)
-
-        finally:
-            if conn:
-                conn.close()
-            return data
-    
-    def get_dni(self,no):
-
-        data = None
-        try:
-            conn = self.__connect()
-            c = conn.cursor()
-            c.execute("SELECT DNIcliente FROM Cliente WHERE DNIcliente LIKE ?", (str(no),))
-            data = c.fetchone()
-            conn.commit()
-            c.close()
-        
-        except sqlite3.Error as error:
-            print("Error while executing sqlite script", error)
-        
-        finally:
-            if conn:
-                conn.close()
-            return data
-###
-if __name__ == "__main__": 
-    all = Cliente("paqueteria.db")
-    print(all.select_cliente())
+class Cliente(Table):
+    def __init__(self):
+        super().__init__(DATABASE)
+        self._table_name = TABLE_NAME
