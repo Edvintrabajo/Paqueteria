@@ -1,7 +1,7 @@
 % include('header.tpl', title = "Clientes")
 <p>Añadir un nuevo cliente:</p>
-<form action="/new_cliente" method="POST">
-    <input type="text" placeholder="DNI" size="10" name="DNI">
+<form action="/cliente" method="POST">
+    <input type="text" placeholder="DNI" size="10" name="dni">
     <input type="text" placeholder="Nombre" size="10" name="Nombre">
     <input type="text" placeholder="Apellido" size="10" name="Apellido">
     <input type="text" placeholder="Direccion" size="20" name="Direccion">

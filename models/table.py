@@ -1,10 +1,10 @@
 import sqlite3
 from abc import ABC
+from config.config import DATABASE
  
 class Table(ABC):
-    def __init__(self, db_name):
-        self._db_name = db_name
-        self._table_name = ""
+    def __init__(self):
+        self._db_name = DATABASE
 
     def _connect(self):
         conn = sqlite3.connect(self._db_name)
