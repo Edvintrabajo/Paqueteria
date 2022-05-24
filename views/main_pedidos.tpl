@@ -6,8 +6,8 @@
     <input type="text" placeholder="Distancia" size="10" maxlength="100" name="Distancia">
     <input type="text" placeholder="Direccion" size="10" maxlength="100" name="Direccion">
     <input type="text" placeholder="Estado" size="10" maxlength="100" name="Estado">
-    <input type="text" placeholder="DNI Repartidor" size="10" maxlength="100" name="DNI Repartidor">
-    <input type="text" placeholder="DNI Cliente" size="10" maxlength="100" name="DNI Cliente">
+    <input type="text" placeholder="DNI Repartidor" size="10" maxlength="100" name="DNIRepartidor">
+    <input type="text" placeholder="DNI Cliente" size="10" maxlength="100" name="DNICliente">
     <input type="submit" name="save" value="Añadir">
 </form>
 <p>Los pedidos actuales son los siguientes:</p>
