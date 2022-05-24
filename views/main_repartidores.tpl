@@ -1,7 +1,7 @@
 % include('header.tpl', title = "repartidores")
 <p>Añadir un nuevo repartidor:</p>
-<form action="/new_repartidor" method="POST">
-    <input type="text" placeholder="DNI" size="10" maxlength="100" name="DNI">
+<form action="/repartidor" method="POST">
+    <input type="text" placeholder="DNI" size="10" maxlength="100" name="dni">
     <input type="text" placeholder="Nombre" size="10" maxlength="100" name="Nombre">
     <input type="submit" name="save" value="Añadir">
 </form>

@@ -4,77 +4,67 @@ sys.path.append('models') # add the models directory to the path
 from bottle import run, template, request, get, post, redirect, static_file, error
 from models.repartidor import Repartidor
 
-Repartidor = Repartidor()
+repartidor = Repartidor()
 
-@get('/Repartidor')
-def index_Repartidor():
-    rows= Repartidor.select()
-    return template('main_Repartidors', rows=Repartidor.select())
+@get('/repartidor')
+def index_repartidor():
+    rows= repartidor.select()
+    return template('main_repartidores', rows=repartidor.select())
 
-@post('/Repartidor')
+@post('/repartidor')
 def new_task_save():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'DNIRepartidor': request.POST.dni.strip(), 
-            'Nombre': request.POST.Nombre.strip(),
-            'Apellidos': request.POST.Apellido.strip(),
-            'DireccionRepartidor': request.POST.Direccion.strip()
+            'NombreRepartidor': request.POST.Nombre.strip()
         }
 
-        if data.get('DNIRepartidor') == "" or data.get('Nombre') == "" or data.get('Apellidos') == "" or data.get('DireccionRepartidor') == "":
+        if data.get('DNIRepartidor') == "" or data.get('NombreRepartidor') == "":
             return redirect("/error")
 
-        Repartidor.insert(data)
+        repartidor.insert(data)
 
         # se muestra el resultado de la operación
-        return redirect('/Repartidor')
+        return redirect('/repartidor')
 
-@get('/edit_Repartidor/<no>')
+@get('/edit_repartidor/<no>')
 def edit_item_form(no):
-    fields = ['Nombre', 'Apellidos', 'DireccionRepartidor']
+    fields = ['NombreRepartidor']
     where = {'DNIRepartidor': no}
-    cur_data = Repartidor.get(fields, where)  # get the current data for the item we are editing
-    return template('edit_Repartidors', old=cur_data, no=no)
+    cur_data = repartidor.get(fields, where)  # get the current data for the item we are editing
+    return template('edit_repartidor', old=cur_data, no=no)
 
-@post('/edit_Repartidor/<no>')
+@post('/edit_repartidor/<no>')
 def edit_item(no):
     
     if request.POST.save:
         data = {
-            'Nombre': request.POST.Nombre.strip(),
-            'Apellidos': request.POST.Apellido.strip(),
-            'DireccionRepartidor': request.POST.Direccion.strip()
+            'NombreRepartidor': request.POST.NombreRepartidor.strip()
         }
-        if data.get('Nombre') == "":
-            del data['Nombre']
+        if data.get('NombreRepartidor') == "":
+            del data['NombreRepartidor']
 
-        if data.get('Apellidos') == "":
-            del data['Apellidos']
-
-        if data.get('DireccionRepartidor') == "":
-            del data['DireccionRepartidor']
-
-        where = {'DNIRepartidor': no}
+        where = {'DNIrepartidor': no}
         
-        Repartidor.update(data, where)
+        repartidor.update(data, where)
         
-    return redirect('/Repartidor')
+    return redirect('/repartidor')
 
-@get('/delete_Repartidor/<no>')
+@get('/delete_repartidor/<no>')
 def delete_item_form(no):
-    fields = ['DNIRepartidor']
-    where = {'DNIRepartidor': no}
-    cur_data = Repartidor.get(fields, where)  # get the current data for the item we are editing
-    return template('delete_Repartidors', old=cur_data, no=no)
+    fields = ['DNIrepartidor']
+    where = {'DNIrepartidor': no}
+    cur_data = repartidor.get(fields, where)  # get the current data for the item we are editing
+    return template('delete_repartidor', old=cur_data, no=no)
 
-@post('/delete_Repartidor/<no>')
+@post('/delete_repartidor/<no>')
 def delete_item(no):
     
     if request.POST.delete:
-        where = {'DNIRepartidor': no}
-        Repartidor.delete(where)
+        where = {'DNIrepartidor': no}
+        repartidor.delete(where)
 
-    return redirect('/Repartidor')
+    return redirect('/repartidor')
 
 @error(404)
 def error404(error):
