@@ -4,7 +4,7 @@ from config.config import DATABASE
 
 TABLE_NAME = 'Pedido'
 
-class Cliente(Table):
+class Pedido(Table):
     def __init__(self):
         self._table_name = TABLE_NAME
         self._db_name = DATABASE
