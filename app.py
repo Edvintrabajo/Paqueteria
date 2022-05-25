@@ -524,6 +524,14 @@ def delete_item(no):
 
 #RUTAS GLOBALES
 
+@get('/')
+def index():
+    return static_file('index.html', root='static')
+
+@get("/static/<filepath:path>")
+def html(filepath):
+    return static_file(filepath, root = "static")
+
 #RUTA ERROR
 @error(404)
 def error404(error):

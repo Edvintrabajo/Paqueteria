@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+*,
+*::after,
+*::before {
+ box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.6rem;
+    line-height: 2;
+    min-width: 350px;
+    min-height: 350px;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/*HEADER*/
+
+.header {
+    width: 100%;
+    height: 100vh;
+    color: white;
+}
+
+.img-header {
+    background-image: url(/static/img/header.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contenedor-nav {
+    margin: 0 auto;
+}
+
+.nav {
+    background-color:midnightblue;
+    width: 100%;
+    text-align: center;
+}
+
+.nombre-empresa {
+    font-weight: 300;
+    text-decoration: none;
+    color: white;
+    font-size: 3rem;
+    font-family: 'Anton', sans-serif;
+}
+
+.contenido-header {
+    color: midnightblue;
+    font-family: 'Lobster', cursive;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: 2rem;
+    margin-top: 150px;
+}
+
+
+/*FOOTER*/
+
+.footer {
+    width: 100%;
+    height: 80px;
+    background-color: midnightblue;
+}
+
+.contenido-footer {
+    height: 100%;
+    text-decoration: none;
+    color: white;
+    font-size: 1.4rem;
+    font-family: 'Anton', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
