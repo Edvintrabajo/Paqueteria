@@ -1,6 +1,6 @@
 % include('header.tpl', title = "pedidos")
 <p>Añadir un nuevo pedido:</p>
-<form action="/new_pedido" method="POST">
+<form action="/pedido" method="POST">
     <input type="text" placeholder="Peso" size="10" maxlength="100" name="Peso">
     <input type="text" placeholder="Coste" size="10" maxlength="100" name="Coste">
     <input type="text" placeholder="Distancia" size="10" maxlength="100" name="Distancia">
