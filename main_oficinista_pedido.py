@@ -2,69 +2,71 @@ import sys
 sys.path.append('models') # add the models directory to the path
 
 from bottle import run, template, request, get, post, redirect, static_file, error
-from models.oficinista import Oficinista
+from models.oficinista_pedido import Oficinista_Pedido
 
-oficinista = Oficinista()
+oficinista_pedido = Oficinista_Pedido()
 
-@get('/oficinista')
-def index_oficinista():
-    rows= oficinista.select()
-    return template('main_oficinistas', rows=oficinista.select())
+@get('/oficinista_pedido')
+def index_oficinista_pedido():
+    rows= oficinista_pedido.select()
+    return template('main_oficinista_pedido', rows=oficinista_pedido.select())
 
-@post('/oficinista')
+@post('/oficinista_pedido')
 def new_task_save():
     if request.POST.save:  # the user clicked the `save` button
         data = {
-            'IDPedido': request.POST.Nombre.strip(),
+            'IDPedido': request.POST.IDPedido.strip(),
+            'ID_Oficinista': request.POST.IDOficinista.strip()
         }
 
-        if data.get('Nombre') == "":
+        if data.get('ID_Oficinista') == "" or data.get('IDPedido') == "":
             return redirect("/error")
 
-        oficinista.insert(data)
+        oficinista_pedido.insert(data)
 
         # se muestra el resultado de la operación
-        return redirect('/oficinista')
+        return redirect('/oficinista_pedido')
 
-@get('/edit_oficinista/<no:int>')
+@get('/edit_oficinista_pedido/<no:int>')
 def edit_item_form(no):
-    fields = ['Nombre']
-    where = {'ID_Oficinista': no}
-    cur_data = oficinista.get(fields, where)  # get the current data for the item we are editing
-    return template('edit_oficinistas', old=cur_data, no=no)
+    fields = ['ID_Oficinista']
+    where = {'IDPedido': no}
+    cur_data = oficinista_pedido.get(fields, where)  # get the current data for the item we are editing
+    return template('edit_oficinista_pedido', old=cur_data, no=no)
 
-@post('/edit_oficinista/<no:int>')
+@post('/edit_oficinista_pedido/<no:int>')
 def edit_item(no):
     
     if request.POST.save:
         data = {
-            'Nombre': request.POST.Nombre.strip()
+            'ID_Oficinista': request.POST.IDOficinista.strip()
         }
-        if data.get('Nombre') == "":
-            del data['Nombre']
+
+        if data.get('ID_Oficinista') == "":
+            del data['ID_Oficinista']
 
 
-        where = {'ID_Oficinista': no}
+        where = {'IDPedido': no}
         
-        oficinista.update(data, where)
+        oficinista_pedido.update(data, where)
         
-    return redirect('/oficinista')
+    return redirect('/oficinista_pedido')
 
-@get('/delete_oficinista/<no:int>')
+@get('/delete_oficinista_pedido/<no:int>')
 def delete_item_form(no):
-    fields = ['ID_Oficinista']
-    where = {'ID_Oficinista': no}
-    cur_data = oficinista.get(fields, where)  # get the current data for the item we are editing
-    return template('delete_oficinistas', old=cur_data, no=no)
+    fields = ['IDPedido']
+    where = {'IDPedido': no}
+    cur_data = oficinista_pedido.get(fields, where)  # get the current data for the item we are editing
+    return template('delete_oficinista_pedido', old=cur_data, no=no)
 
-@post('/delete_oficinista/<no:int>')
+@post('/delete_oficinista_pedido/<no:int>')
 def delete_item(no):
     
     if request.POST.delete:
-        where = {'ID_Oficinista': no}
-        oficinista.delete(where)
+        where = {'IDPedido': no}
+        oficinista_pedido.delete(where)
 
-    return redirect('/oficinista')
+    return redirect('/oficinista_pedido')
 
 @error(404)
 def error404(error):

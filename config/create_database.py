@@ -38,8 +38,8 @@ def create_database(db_file):
 	FOREIGN KEY("DNIcliente") REFERENCES "Cliente"("DNIcliente"))''')
 
     conn.execute('''CREATE TABLE IF NOT EXISTS "Oficinista_Pedido" (
-	"ID_Oficinista"	INTEGER,
 	"IDPedido"	INTEGER,
+    "ID_Oficinista"	INTEGER,
 	FOREIGN KEY("ID_Oficinista") REFERENCES "Oficinista"("ID_Oficinista"),
 	FOREIGN KEY("IDPedido") REFERENCES "Pedido"("IDPedido"),
 	PRIMARY KEY("IDPedido"))''')
@@ -74,9 +74,9 @@ def create_database(db_file):
     (3,NULL,NULL,140,'Calle Argentina','A','12345678E','12345678C'),
     (4,NULL,NULL,80,'Calle Las Canteras','A','12345678D','12345678A')""")
 
-    conn.execute("""INSERT INTO "Oficinista_Pedido" ("ID_Oficinista","IDPedido") VALUES (1,1),
-    (1,2),
-    (2,3)""")
+    conn.execute("""INSERT INTO "Oficinista_Pedido" ("IDPedido", "ID_Oficinista") VALUES (1,1),
+    (2,2),
+    (3,3)""")
 
     conn.execute("""INSERT INTO "Pedido_Producto" ("ID_Pedido_Producto","IDPedido","IDProducto") VALUES (1,1,1),
     (2,1,2),
