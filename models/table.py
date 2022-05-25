@@ -106,4 +106,6 @@ class Table(ABC):
         finally:
             if conn:
                 conn.close()
+                if row == None:
+                    return False
             return row

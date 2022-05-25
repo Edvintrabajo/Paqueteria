@@ -110,7 +110,24 @@ def new_task_save():
         if data.get('PesoTotal') == "" or data.get('CosteTotal') == "" or data.get('Distancia') == "" or data.get('DireccionEnvio') == "" or data.get('Estado') == "" or data.get('DNIRepartidor') == "" or data.get('DNIcliente') == "":
             return redirect("/error")
 
-        pedido.insert(data)
+        dnirepartidor = data.get("DNIRepartidor")
+        dnicliente = data.get("DNIcliente")
+
+        where = {'DNIRepartidor': dnirepartidor}
+
+        if repartidor.get(['DNIRepartidor'], where) == False:
+
+            return redirect('/error')
+
+        where = {'DNIcliente': dnicliente}
+
+        if cliente.get(['DNIcliente'], where) == False:
+
+            return redirect('/error')
+
+        else:
+
+            pedido.insert(data)
 
         # se muestra el resultado de la operación
         return redirect('/pedido')
@@ -404,8 +421,25 @@ def new_task_save():
 
         if data.get('ID_Oficinista') == "" or data.get('IDPedido') == "":
             return redirect("/error")
+            
+        idpedido = data.get("IDPedido")
+        idoficinista = data.get("ID_Oficinista")
 
-        oficinista_pedido.insert(data)
+        where = {'IDPedido': idpedido}
+
+        if pedido.get(['IDPedido'], where) == False:
+
+            return redirect('/error')
+
+        where = {'ID_Oficinista': idoficinista}
+
+        if oficinista.get(['ID_Oficinista'], where) == False:
+
+            return redirect('/error')
+
+        else:
+
+            oficinista_pedido.insert(data)
 
         # se muestra el resultado de la operación
         return redirect('/oficinista_pedido')
@@ -472,7 +506,27 @@ def new_task_save():
         if data.get('IDPedido') == "" or data.get('IDProducto') == "":
             return redirect("/error")
 
-        pedido_producto.insert(data)
+        if data.get('ID_Oficinista') == "" or data.get('IDPedido') == "":
+            return redirect("/error")
+            
+        idpedido = data.get("IDPedido")
+        idproducto = data.get("IDProducto")
+
+        where = {'IDPedido': idpedido}
+
+        if pedido.get(['IDPedido'], where) == False:
+
+            return redirect('/error')
+
+        where = {'IDProducto': idproducto}
+
+        if producto.get(['IDProducto'], where) == False:
+
+            return redirect('/error')
+
+        else:
+
+            pedido_producto.insert(data)
 
         # se muestra el resultado de la operación
         return redirect('/pedido_producto')
@@ -542,3 +596,4 @@ def error404(error):
 if __name__ == '__main__':
 
     run(host='localhost', port=8080, debug=True, reloader=True)
+
