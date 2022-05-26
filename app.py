@@ -463,11 +463,20 @@ def edit_item(no):
             del data['ID_Oficinista']
 
 
-        where = {'IDPedido': no}
+        idoficinista = data.get("ID_Oficinista")
+
+        where = {'ID_Oficinista': idoficinista}
+
+        if oficinista.get(['ID_Oficinista'], where) == False:
+
+            return redirect('/error')
+
+        else:
+            oficinista_pedido.update(data, where)
         
-        oficinista_pedido.update(data, where)
-        
-    return redirect('/oficinista_pedido')
+        return redirect('/oficinista_pedido')
+
+
 
 @get('/delete_oficinista_pedido/<no:int>')
 def delete_item_form(no):
@@ -553,9 +562,24 @@ def edit_item(no):
         if data.get('IDProducto') == "":
             del data['IDProducto']
 
-        where = {'ID_Pedido_Producto': no}
-        
-        pedido_producto.update(data, where)
+        idpedido = data.get("IDPedido")
+        idproducto = data.get("IDProducto")
+
+        where = {'IDPedido': idpedido}
+
+        if pedido.get(['IDPedido'], where) == False:
+
+            return redirect('/error')
+
+        where = {'IDProducto': idproducto}
+
+        if producto.get(['IDProducto'], where) == False:
+
+            return redirect('/error')
+
+        where1 = {'ID_Pedido_Producto': no}
+
+        pedido_producto.update(data, where1)
         
     return redirect('/pedido_producto')
 
