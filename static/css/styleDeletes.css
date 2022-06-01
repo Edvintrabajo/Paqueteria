@@ -1,3 +1,16 @@
 .contenedor-delete {
     text-align: center;
 }
+
+.input-delete input {
+    padding: 0.5em;
+    width: 100px;
+}
+
+.input-delete:nth-child(3) {
+    margin-right: 30px;
+}
+
+.input1 {
+    margin-right: 15px;
+}
