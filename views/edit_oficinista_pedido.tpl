@@ -1,7 +1,7 @@
 % include('header.tpl', title = "Editar Oficinista")
 
     <p>Editar asignación de Oficinista a pedido {{no}}:</p>
-    <form action="/edit_oficinista_pedido/{{no}}" method="POST">
+    <form class="form1 formedit" action="/edit_oficinista_pedido/{{no}}" method="POST">
         <input type="text" placeholder="ID Oficinista" size="10" name="IDOficinista">
       <br>
       <input type="submit" name="save" value="Guardar">

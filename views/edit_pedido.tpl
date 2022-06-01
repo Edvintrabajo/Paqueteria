@@ -1,7 +1,7 @@
 % include('header.tpl', title = "Editar pedido")
 
     <p>Editar pedido {{no}}:</p>
-    <form action="/edit_pedido/{{no}}" method="POST">
+    <form class="form1 formedit" action="/edit_pedido/{{no}}" method="POST">
         <input type="text" placeholder="Peso" size="10" maxlength="100" name="Peso">
         <input type="text" placeholder="Coste" size="10" maxlength="100" name="Coste">
         <input type="text" placeholder="Distancia" size="10" maxlength="100" name="Distancia">

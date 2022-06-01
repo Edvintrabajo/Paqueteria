@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/css/normalize.css">
     <!--LINK CSS-->
     <link rel="stylesheet" href="/static/css/styleTables.css">
+    <link rel="stylesheet" href="/static/css/styleEdits.css">
     <title>{{title}}</title>
 </head>
 <body>
