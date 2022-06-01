@@ -67,6 +67,10 @@ img {
     margin-top: 150px;
 }
 
+.enlaces {
+  display: none;
+}
+
 
 /*NAV MOBILE*/
 
@@ -87,11 +91,11 @@ img {
     background-color: rgba(0,0,0,.7);
     z-index: 100;
   }
-  
+
   .main-nav.show{
     margin-left: 0;
   }
-  
+
   .nav-links{
     background-color: rgb(250,250,250);
     display: flex;
@@ -101,7 +105,7 @@ img {
     align-items: center;
     justify-content: flex-start;
   }
-  
+
   .link-item{
     margin-top: 2rem;
     color: #444444;
@@ -109,7 +113,7 @@ img {
     font-weight: bold;
     position: relative;
   }
-  
+
   .link-item::after {
     position: absolute;
     content: "";
@@ -120,11 +124,11 @@ img {
     height: 3px;
     transition: 0.3s ease all;
   }
-  
+
   .link-item:hover::after {
     width: 100%;
   }
-  
+
   .button-menu{
     z-index: 200;
     width: 40px;
@@ -139,7 +143,7 @@ img {
     margin-right: 10px;
     margin-top: 5px;
   }
-  
+
   .button-menu span{
     width: 37px;
     height: 4px;
@@ -150,50 +154,90 @@ img {
     transform-origin: 4px 0px;
     transition: all .2s linear;
   }
-  
+
   .button-menu.close span {
     opacity: 1;
     transform: rotate(45deg) translate(0px, 0px);
     background: #ffffff;
   }
-  
+
   .button-menu.close span:nth-child(2){
     transform: rotate(-45deg) translate(-8px, 5px);
   }
-  
+
   .button-menu.close span:nth-child(3){
     display: none;
   }
-  
-  
+
+
+/*INDEX TABLET*/
+
   @media screen and (min-width:768px) {
-    .button-menu{
-      display: none;
-    }
-  
-    .main-nav{
-      position: static;
-      margin-left: 0;
-      flex-basis: 70%;
-      height: 100%;
-    }
-  
-    .nav-links{
-      width: 100%;
-      flex-direction: row;
-      flex-wrap: wrap;
+
+    .contenido-header {
+      color: midnightblue;
+      font-family: 'Lobster', cursive;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
       align-items: center;
-      justify-content: flex-end;
-      background: white;
-    }
-  
-    .link-item{
-      display: inline-block;
-      margin-top: 0;
-      margin-right: 2rem;
-    }
+      font-size: 3rem;
+      margin-top: 240px;
+  }
+}
+
+/*INDEX PC*/
+
+@media screen and (min-width:1200px) {
+  .button-menu{
+    display: none;
   }
 
+  .main-nav{
+    display: none;
+  }
+
+  .nav-links{
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    background: white;
+  }
+
+  .link-item{
+    display: inline-block;
+    margin-top: 0;
+    margin-right: 2rem;
+  }
+
+  .contenido-header {
+    color: midnightblue;
+    font-family: 'Lobster', cursive;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-size: 4rem;
+    margin-top: 240px;
+  }
+
+  .enlaces {
+    display: flex;
+    height: 100px;
+    background-color: white;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .link-item-pc{
+    color: #444444;
+    text-decoration: none;
+    font-weight: bold;
+  }
+}
 
 /*FOOTER*/
 
