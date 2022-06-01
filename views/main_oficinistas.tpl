@@ -1,4 +1,11 @@
 % include('header.tpl', title = "Oficinistas")
+
+<div class="contenedor-nav">
+    <nav class="nav">
+        <a href="/" class="nombre-empresa">Paqueteria</a>
+    </nav>
+</div>
+
 <div class="contenedor-todo">
     <p>Añadir un nuevo oficinista:</p>
     <form class="form1" action="/oficinista" method="POST">

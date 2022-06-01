@@ -1,4 +1,11 @@
 % include('header.tpl', title = "repartidores")
+
+<div class="contenedor-nav">
+    <nav class="nav">
+        <a href="/" class="nombre-empresa">Paqueteria</a>
+    </nav>
+</div>
+
 <div class="contenedor-todo">
 <p>Añadir un nuevo repartidor:</p>
 <form class="form1" action="/repartidor" method="POST">

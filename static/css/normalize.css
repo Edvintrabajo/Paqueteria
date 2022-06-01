@@ -77,8 +77,7 @@
  /**
   * Remove the gray background color from active links in IE 10.
   */
- a {
-   background-color: transparent; }
+
  
  /**
   * Improve readability when focused and also mouse hovered in all browsers.
@@ -643,19 +642,7 @@
  
  strong, b, em, i {
    color: #586e75; }
- 
- a {
-   color: #268bd2;
-   text-decoration: underline; }
-   a:visited {
-     color: #6c71c4; }
-   a:focus, a:hover {
-     color: #cb4b16 !important; }
-   a *:hover, a *:focus {
-     color: #cb4b16; }
-   a strong, a b, a em, a i {
-     color: inherit; }
- 
+
  code {
    background-color: #eee8d5;
    font-family: "Inconsolata", monospace;

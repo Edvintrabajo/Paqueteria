@@ -1,6 +1,31 @@
 body {
+    font-family: 'Anton', sans-serif;
+    min-width: 350px;
+    min-height: 350px;
     margin: 0;
     padding: 0;
+}
+
+.contenedor-nav {
+    margin: 0 auto;
+}
+
+.nav {
+    background-color:midnightblue;
+    width: 100%;
+    text-align: center;
+}
+
+.nombre-empresa {
+    font-weight: 300;
+    text-decoration: none;
+    color: white !important;
+    font-size: 3rem;
+    font-family: 'Anton', sans-serif;
+}
+
+.nombre-empresa:hover {
+    color: white !important;
 }
 
 p {

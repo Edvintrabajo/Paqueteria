@@ -1,4 +1,11 @@
 % include('header.tpl', title = "productos")
+
+<div class="contenedor-nav">
+    <nav class="nav">
+        <a href="/" class="nombre-empresa">Paqueteria</a>
+    </nav>
+</div>
+
 <div class="contenedor-todo">
     <p>Añadir un nuevo producto:</p>
     <form class="form1" action="/producto" method="POST">
