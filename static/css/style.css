@@ -22,7 +22,6 @@ img {
     max-width: 100%;
 }
 
-
 /*HEADER*/
 
 .header {
@@ -70,7 +69,6 @@ img {
 .enlaces {
   display: none;
 }
-
 
 /*NAV MOBILE*/
 
@@ -168,7 +166,6 @@ img {
   .button-menu.close span:nth-child(3){
     display: none;
   }
-
 
 /*INDEX TABLET*/
 
