@@ -1,5 +1,4 @@
 % include('header.tpl', title = "Borrar repartidor")
-
 <div class="contenedor-delete">
   <p>Borrar repartidor con el DNI = {{no}}</p>
   <form action="/delete_repartidor/{{no}}" method="POST">
