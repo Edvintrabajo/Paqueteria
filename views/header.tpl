@@ -8,6 +8,7 @@
     <!--LINK CSS-->
     <link rel="stylesheet" href="/static/css/styleTables.css">
     <link rel="stylesheet" href="/static/css/styleEdits.css">
+    <link rel="stylesheet" href="/static/css/styleDeletes.css">
     <title>{{title}}</title>
 </head>
 <body>
