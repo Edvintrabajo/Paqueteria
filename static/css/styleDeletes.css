@@ -1,3 +1,14 @@
+html {
+    height: 100%;
+}
+
+.bodyglobal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
 .contenedor-delete {
     text-align: center;
 }

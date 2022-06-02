@@ -12,7 +12,6 @@ body {
 
 .nav {
     background-color:midnightblue;
-    width: 100%;
     text-align: center;
 }
 
@@ -33,6 +32,7 @@ p {
     font-weight: bold;
     margin: 0;
     padding: 15px;
+    text-align: center;
 }
 
 .contenedor-todo {
@@ -47,6 +47,7 @@ p {
 .form1 input {
     margin-bottom: 10px;
     padding: 0.5em;
+    border: 1px solid black;
 }
 
 .contenedor-tabla {
@@ -59,4 +60,22 @@ p {
 
 th, td {
     text-align: center;
+}
+
+
+@media screen and (min-width:1200px) {
+
+    body {
+        margin: 0 auto;
+        min-height: 100%;
+        padding-bottom: 2px;
+    }
+
+    .contenedor-tabla {
+        overflow: visible;
+    }
+
+    html {
+        height: 100%;
+    }
 }
