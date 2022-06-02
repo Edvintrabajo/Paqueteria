@@ -9,6 +9,7 @@ from models.productos import Producto
 from models.repartidor import Repartidor
 from models.oficinista_pedido import Oficinista_Pedido
 from models.pedido_producto import Pedido_Producto
+from validaciones import *
 
 #RUTAS CLIENTES
 cliente = Cliente()
@@ -29,6 +30,11 @@ def new_task_save():
         }
 
         if data.get('DNIcliente') == "" or data.get('Nombre') == "" or data.get('Apellidos') == "" or data.get('DireccionCliente') == "":
+            return redirect("/error")
+
+        data.update({'DNIcliente': data.get("DNIcliente").upper()})
+
+        if validaciondni(data.get('DNIcliente')) == False:
             return redirect("/error")
 
         cliente.insert(data)
