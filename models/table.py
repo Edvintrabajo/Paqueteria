@@ -89,6 +89,7 @@ class Table(ABC):
             return True
         
     def get(self, fields, where):
+        row = None
         clave = list(where.keys())[0] 
         value = where[clave]
         where_clause = f"{clave} LIKE ?"
@@ -109,3 +110,20 @@ class Table(ABC):
                 if row == None:
                     return False
             return row
+
+    def select_id(self, id):
+        rows = None
+        try:
+            conn = self._connect()
+            cursor = conn.cursor()
+            cursor.execute(f"SELECT {id} FROM {self._table_name}")
+            rows = cursor.fetchall()
+            conn.close()
+        
+        except sqlite3.Error as error:
+            print("Error while executing sqlite script", error)
+        
+        finally:
+            if conn:
+                conn.close()
+            return rows

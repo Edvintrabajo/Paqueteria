@@ -540,10 +540,10 @@ def new_task_save():
             return redirect('/error')
 
         else:
-
             pedido_producto.insert(data)
-
-        # se muestra el resultado de la operación
+            id_p_p = pedido_producto.get({"ID_Pedido_Producto"},{"IDPedido" : idpedido, "IDProducto" : idproducto} )
+            id_p_p = list(id_p_p)[0]
+            asignarprecio({"ID_Pedido_Producto" : id_p_p})
         return redirect('/pedido_producto')
 
 @get('/edit_pedido_producto/<no:int>')
@@ -624,6 +624,4 @@ def error404(error):
 
 
 if __name__ == '__main__':
-
     run(host='localhost', port=8080, debug=True, reloader=True)
-

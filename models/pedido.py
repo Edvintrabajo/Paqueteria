@@ -1,3 +1,5 @@
+import sys
+sys.path.append('models')
 import sqlite3
 from table import Table
 from config.config import DATABASE
