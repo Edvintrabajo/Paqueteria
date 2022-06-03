@@ -2,7 +2,7 @@ import sqlite3
 def create_database(db_file):
     conn = sqlite3.connect(db_file)
    
-
+   
     conn.execute('''CREATE TABLE IF NOT EXISTS 'Producto' (
         'IDProducto' INTEGER PRIMARY KEY AUTOINCREMENT, 
         'NombreProducto' VARCHAR(30) NOT NULL, 
@@ -83,5 +83,18 @@ def create_database(db_file):
     (3,2,3),
     (4,2,4),
     (5,3,1)""")
+
+    conn.execute('''CREATE TABLE IF NOT EXISTS 'EdicionPedido'(
+        'Numero_de_pedido' VARCHAR(50),
+        'fecha' DATE)''')
+
+    conn.execute("""CREATE TRIGGER actualizar_pedido
+    AFTER UPDATE ON Pedido
+    FOR EACH ROW
+    BEGIN
+
+        INSERT INTO EdicionPedido VALUES (NEW.IDPedido, CURRENT_DATE);
+
+    END;""")
 
     conn.commit()
