@@ -113,7 +113,7 @@ def new_task_save():
             
         }
 
-        if data.get('PesoTotal') == "" or data.get('CosteTotal') == "" or data.get('Distancia') == "" or data.get('DireccionEnvio') == "" or data.get('Estado') == "" or data.get('DNIRepartidor') == "" or data.get('DNIcliente') == "":
+        if data.get('Distancia') == "" or data.get('DireccionEnvio') == "" or data.get('Estado') == "" or data.get('DNIRepartidor') == "" or data.get('DNIcliente') == "":
             return redirect("/error")
 
         dnirepartidor = data.get("DNIRepartidor")
@@ -131,9 +131,10 @@ def new_task_save():
 
             return redirect('/error')
 
-        else:
-
-            pedido.insert(data)
+        else: 
+            id_p = pedido.select_maxid()
+            id_p = id_p[0]
+            asignarprecio_distancia({"IDPedido" : id_p})
 
         # se muestra el resultado de la operación
         return redirect('/pedido')
@@ -542,7 +543,7 @@ def new_task_save():
         else:
             pedido_producto.insert(data)
             id_p_p = pedido_producto.get({"ID_Pedido_Producto"},{"IDPedido" : idpedido, "IDProducto" : idproducto} )
-            id_p_p = list(id_p_p)[0]
+            id_p_p = id_p_p[0]
             asignarprecio({"ID_Pedido_Producto" : id_p_p})
         return redirect('/pedido_producto')
 

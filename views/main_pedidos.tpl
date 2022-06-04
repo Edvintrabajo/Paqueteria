@@ -9,8 +9,6 @@
 <div class="contenedor-todo">
     <p>Añadir un nuevo pedido:</p>
     <form class="form1" action="/pedido" method="POST">
-        <input type="text" placeholder="Peso" size="10" maxlength="100" name="Peso">
-        <input type="text" placeholder="Coste" size="10" maxlength="100" name="Coste">
         <input type="text" placeholder="Distancia" size="10" maxlength="100" name="Distancia">
         <input type="text" placeholder="Direccion" size="10" maxlength="100" name="Direccion">
         <input type="text" placeholder="Estado" size="10" maxlength="100" name="Estado">
