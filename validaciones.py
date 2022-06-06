@@ -34,7 +34,6 @@ def asignarprecio_distancia(id_p):
 
     pedido.update({"CosteTotal": precio_distancia}, id_p)
 
-
 def asignarprecio(id_p_p):
     p_p = Pedido_Producto()
     pedido = Pedido()

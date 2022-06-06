@@ -141,7 +141,7 @@ def new_task_save():
 
 @get('/edit_pedido/<no:int>')
 def edit_item_form(no):
-    fields = ['PesoTotal', 'CosteTotal', 'Distancia', 'DireccionEnvio', 'Estado']
+    fields = ['Estado']
     where = {'IDPedido': no}
     cur_data = pedido.get(fields, where)  # get the current data for the item we are editing
     return template('edit_pedido', old=cur_data, no=no)
@@ -151,36 +151,11 @@ def edit_item(no):
     
     if request.POST.save:
         data = {
-            'PesoTotal': request.POST.Peso.strip(), 
-            'CosteTotal': request.POST.Coste.strip(),
-            'Distancia': request.POST.Distancia.strip(),
-            'DireccionEnvio': request.POST.Direccion.strip(),
-            'Estado': request.POST.Estado.strip(),
-            'DNIRepartidor': request.POST.DNIRepartidor.strip(),
-            'DNIcliente': request.POST.DNICliente.strip()
-            
+            'Estado': request.POST.Estado.strip()  
         }
-        
-        if data.get('PesoTotal') == "":
-            del data['PesoTotal']
-
-        if data.get('CosteTotal') == "":
-            del data['CosteTotal']
-
-        if data.get('Distancia') == "":
-            del data['Distancia']
-
-        if data.get('DireccionEnvio') == "":
-            del data['DireccionEnvio']
 
         if data.get('Estado') == "":
             del data['Estado']
-
-        if data.get('DNIRepartidor') == "":
-            del data['DNIRepartidor']
-
-        if data.get('DNIcliente') == "":
-            del data['DNIcliente']
 
         where = {'IDPedido': no}
         
