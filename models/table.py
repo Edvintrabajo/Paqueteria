@@ -111,6 +111,28 @@ class Table(ABC):
                     return False
             return row
 
+    def get_p_p(self, fields, where):
+        row = None
+        value1 = where[0]
+        value2 = where[1]
+        query = f"SELECT {', '.join(fields)} FROM {self._table_name} WHERE IDPedido = {value1} AND IDProducto = {value2}"
+        try:
+            conn = self._connect()
+            cursor = conn.cursor()
+            cursor.execute(query)
+            row = cursor.fetchone()
+            conn.close()
+        
+        except sqlite3.Error as error:
+            print("Error while executing sqlite script", error)
+        
+        finally:
+            if conn:
+                conn.close()
+                if row == None:
+                    return False
+            return row
+
     def select_id(self, id):
         rows = None
         try:

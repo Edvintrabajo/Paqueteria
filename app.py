@@ -177,6 +177,8 @@ def delete_item(no):
     if request.POST.delete:
         where = {'IDPedido': no}
         pedido.delete(where)
+        pedido_producto.delete(where)
+        oficinista_pedido.delete(where)
 
     return redirect('/pedido')
 
@@ -241,6 +243,7 @@ def delete_item(no):
     if request.POST.delete:
         where = {'ID_Oficinista': no}
         oficinista.delete(where)
+        oficinista_pedido.delete(where)
 
     return redirect('/oficinista')
 
@@ -286,7 +289,7 @@ def new_task_save():
 
 @get('/edit_producto/<no:int>')
 def edit_item_form(no):
-    fields = ['NombreProducto', 'CantidadProducto', 'PesoProducto']
+    fields = ['NombreProducto']
     where = {'IDProducto': no}
     cur_data = producto.get(fields, where)  # get the current data for the item we are editing
     return template('edit_productos', old=cur_data, no=no)
@@ -296,18 +299,10 @@ def edit_item(no):
     
     if request.POST.save:
         data = {
-            'NombreProducto': request.POST.Nombre.strip(),
-            'CantidadProducto': request.POST.Cantidad.strip(),
-            'PesoProducto': request.POST.Peso.strip()
+            'NombreProducto': request.POST.Nombre.strip()
         }
         if data.get('NombreProducto') == "":
             del data['NombreProducto']
-
-        if data.get('CantidadProducto') == "":
-            del data['CantidadProducto']
-
-        if data.get('PesoProducto') == "":
-            del data['PesoProducto']
 
         where = {'IDProducto': no}
         
@@ -455,8 +450,7 @@ def edit_item(no):
         }
 
         if data.get('ID_Oficinista') == "":
-            del data['ID_Oficinista']
-
+            return redirect('/oficinista_pedido')
 
         idoficinista = data.get("ID_Oficinista")
 
@@ -469,7 +463,7 @@ def edit_item(no):
         else:
             oficinista_pedido.update(data, where)
         
-        return redirect('/oficinista_pedido')
+    return redirect('/oficinista_pedido')
 
 
 
@@ -530,7 +524,7 @@ def new_task_save():
 
         else:
             pedido_producto.insert(data)
-            id_p_p = pedido_producto.get({"ID_Pedido_Producto"},{"IDPedido" : idpedido, "IDProducto" : idproducto} )
+            id_p_p = pedido_producto.get_p_p({"ID_Pedido_Producto"},[idpedido, idproducto])
             id_p_p = id_p_p[0]
             asignarprecio({"ID_Pedido_Producto" : id_p_p})
         return redirect('/pedido_producto')

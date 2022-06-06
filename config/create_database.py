@@ -34,22 +34,22 @@ def create_database(db_file):
 	"Estado"	TEXT NOT NULL DEFAULT 'A' CHECK(Estado IN ('A','S','E','I')),
 	"DNIRepartidor"	VARCHAR(9) NOT NULL,
 	"DNIcliente"	VARCHAR(9) NOT NULL,
-	FOREIGN KEY("DNIRepartidor") REFERENCES "Repartidor"("DNIRepartidor"),
-	FOREIGN KEY("DNIcliente") REFERENCES "Cliente"("DNIcliente"))''')
+	FOREIGN KEY("DNIRepartidor") REFERENCES "Repartidor"("DNIRepartidor") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("DNIcliente") REFERENCES "Cliente"("DNIcliente") ON UPDATE CASCADE ON DELETE CASCADE)''')
 
     conn.execute('''CREATE TABLE IF NOT EXISTS "Oficinista_Pedido" (
 	"IDPedido"	INTEGER,
     "ID_Oficinista"	INTEGER,
-	FOREIGN KEY("ID_Oficinista") REFERENCES "Oficinista"("ID_Oficinista"),
-	FOREIGN KEY("IDPedido") REFERENCES "Pedido"("IDPedido"),
+	FOREIGN KEY("ID_Oficinista") REFERENCES "Oficinista"("ID_Oficinista") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("IDPedido") REFERENCES "Pedido"("IDPedido") ON UPDATE CASCADE ON DELETE CASCADE,
 	PRIMARY KEY("IDPedido"))''')
 
     conn.execute('''CREATE TABLE IF NOT EXISTS "Pedido_Producto" (
 	"ID_Pedido_Producto"	INTEGER PRIMARY KEY AUTOINCREMENT,
 	"IDPedido"	INTEGER,
 	"IDProducto"	INTEGER,
-	FOREIGN KEY("IDProducto") REFERENCES "Producto"("IDProducto"),
-	FOREIGN KEY("IDPedido") REFERENCES "Pedido"("IDPedido"))''')
+	FOREIGN KEY("IDProducto") REFERENCES "Producto"("IDProducto") ON UPDATE CASCADE ON DELETE CASCADE,
+	FOREIGN KEY("IDPedido") REFERENCES "Pedido"("IDPedido") ON UPDATE CASCADE ON DELETE CASCADE)''')
 
     conn.execute("""INSERT INTO Cliente (DNIcliente, Nombre, Apellidos, DireccionCliente) VALUES 
     ('12345678A', 'Carlos', 'Freyer', 'Las Palmas'),
