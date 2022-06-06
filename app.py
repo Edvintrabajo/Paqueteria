@@ -30,12 +30,14 @@ def new_task_save():
         }
 
         if data.get('DNIcliente') == "" or data.get('Nombre') == "" or data.get('Apellidos') == "" or data.get('DireccionCliente') == "":
-            return redirect("/error")
+            errormsg = "Has dejado algún campo vacio"
+            return template('404', error=errormsg)
 
         data.update({'DNIcliente': data.get("DNIcliente").upper()})
 
         if validaciondni(data.get('DNIcliente')) == False:
-            return redirect("/error")
+            errormsg = f"No has introducido un DNI válido"
+            return template('404', error=errormsg)
 
         cliente.insert(data)
 
@@ -113,7 +115,8 @@ def new_task_save():
         }
 
         if data.get('Distancia') == "" or data.get('DireccionEnvio') == "" or data.get('Estado') == "" or data.get('DNIRepartidor') == "" or data.get('DNIcliente') == "":
-            return redirect("/error")
+            errormsg = "Has dejado algún campo vacio"
+            return template('404', error=errormsg)
 
         dnirepartidor = data.get("DNIRepartidor")
         dnicliente = data.get("DNIcliente")
@@ -122,13 +125,15 @@ def new_task_save():
 
         if repartidor.get(['DNIRepartidor'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el DNI {dnirepartidor} en la tabla"
+            return template('404', error=errormsg)
 
         where = {'DNIcliente': dnicliente}
 
         if cliente.get(['DNIcliente'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el DNI {dnicliente} en la tabla"
+            return template('404', error=errormsg)
 
         else: 
             id_p = pedido.select_maxid()
@@ -154,7 +159,8 @@ def edit_item(no):
         }
 
         if data.get('Estado') == "":
-            return redirect('/error')
+            errormsg = f"No has introducido ningún estado"
+            return template('404', error=errormsg)
 
         data.update({'Estado': data.get("Estado").upper()})
 
@@ -200,7 +206,8 @@ def new_task_save():
         }
 
         if data.get('Nombre') == "":
-            return redirect('/error')
+            errormsg = f"No has introducido ningún nombre"
+            return template('404', error=errormsg)
 
         oficinista.insert(data)
 
@@ -267,7 +274,8 @@ def new_task_save():
         }
 
         if data.get('NombreProducto') == "" or data.get('CantidadProducto') == "" or data.get('PesoProducto') == "":
-            return redirect("/error")
+            errormsg = "Has dejado algún campo vacio"
+            return template('404', error=errormsg)
 
         cantidad = data.get("CantidadProducto")
         peso = data.get("PesoProducto")
@@ -275,12 +283,14 @@ def new_task_save():
         try:
             float(cantidad)
         except:
-            return redirect("/error")
+            errormsg = f"No has introducido una cantidad válida"
+            return template('404', error=errormsg)
 
         try:
             float(peso)
         except:
-            return redirect("/error")
+            errormsg = f"No has introducido un peso válido"
+            return template('404', error=errormsg)
 
         producto.insert(data)
 
@@ -345,7 +355,8 @@ def new_task_save():
         }
 
         if data.get('DNIRepartidor') == "" or data.get('NombreRepartidor') == "":
-            return redirect("/error")
+            errormsg = "Has dejado algún campo vacio"
+            return template('404', error=errormsg)
 
         repartidor.insert(data)
 
@@ -410,7 +421,8 @@ def new_task_save():
         }
 
         if data.get('ID_Oficinista') == "" or data.get('IDPedido') == "":
-            return redirect("/error")
+            errormsg = "Has dejado algún campo vacio"
+            return template('404', error=errormsg)
             
         idpedido = data.get("IDPedido")
         idoficinista = data.get("ID_Oficinista")
@@ -419,13 +431,15 @@ def new_task_save():
 
         if pedido.get(['IDPedido'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID pedido {idpedido} en la tabla"
+            return template('404', error=errormsg)
 
         where = {'ID_Oficinista': idoficinista}
 
         if oficinista.get(['ID_Oficinista'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID oficinista {idoficinista} en la tabla"
+            return template('404', error=errormsg)
 
         else:
 
@@ -458,7 +472,8 @@ def edit_item(no):
 
         if oficinista.get(['ID_Oficinista'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID oficinista {idoficinista} en la tabla"
+            return template('404', error=errormsg)
 
         else:
             oficinista_pedido.update(data, where)
@@ -502,10 +517,8 @@ def new_task_save():
         }
 
         if data.get('IDPedido') == "" or data.get('IDProducto') == "":
-            return redirect("/error")
-
-        if data.get('ID_Oficinista') == "" or data.get('IDPedido') == "":
-            return redirect("/error")
+            errormsg = "Has dejado algún campo vacio"
+            return template('404', error=errormsg)
             
         idpedido = data.get("IDPedido")
         idproducto = data.get("IDProducto")
@@ -514,13 +527,15 @@ def new_task_save():
 
         if pedido.get(['IDPedido'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID pedido {idpedido} en la tabla"
+            return template('404', error=errormsg)
 
         where = {'IDProducto': idproducto}
 
         if producto.get(['IDProducto'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID producto {idproducto} en la tabla"
+            return template('404', error=errormsg)
 
         else:
             pedido_producto.insert(data)
@@ -558,13 +573,15 @@ def edit_item(no):
 
         if pedido.get(['IDPedido'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID pedido {idpedido} en la tabla"
+            return template('404', error=errormsg)
 
         where = {'IDProducto': idproducto}
 
         if producto.get(['IDProducto'], where) == False:
 
-            return redirect('/error')
+            errormsg = f"No existe el ID producto {idproducto} en la tabla"
+            return template('404', error=errormsg)
 
         where1 = {'ID_Pedido_Producto': no}
 
@@ -602,7 +619,8 @@ def html(filepath):
 #RUTA ERROR
 @error(404)
 def error404(error):
-    return static_file('404.html', root='static')
+    errormsg = f"Página no encontrada"
+    return template('404', error=errormsg)
 
 
 
