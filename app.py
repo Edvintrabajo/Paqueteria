@@ -110,7 +110,6 @@ def new_task_save():
             'Estado': request.POST.Estado.strip(),
             'DNIRepartidor': request.POST.DNIRepartidor.strip(),
             'DNIcliente': request.POST.DNICliente.strip()
-            
         }
 
         if data.get('Distancia') == "" or data.get('DireccionEnvio') == "" or data.get('Estado') == "" or data.get('DNIRepartidor') == "" or data.get('DNIcliente') == "":
@@ -155,7 +154,9 @@ def edit_item(no):
         }
 
         if data.get('Estado') == "":
-            del data['Estado']
+            return redirect('/error')
+
+        data.update({'Estado': data.get("Estado").upper()})
 
         where = {'IDPedido': no}
         
@@ -197,7 +198,7 @@ def new_task_save():
         }
 
         if data.get('Nombre') == "":
-            return redirect("/error")
+            return redirect('/error')
 
         oficinista.insert(data)
 
@@ -219,8 +220,7 @@ def edit_item(no):
             'Nombre': request.POST.Nombre.strip()
         }
         if data.get('Nombre') == "":
-            del data['Nombre']
-
+            return redirect('/oficinista')
 
         where = {'ID_Oficinista': no}
         
@@ -264,6 +264,19 @@ def new_task_save():
         }
 
         if data.get('NombreProducto') == "" or data.get('CantidadProducto') == "" or data.get('PesoProducto') == "":
+            return redirect("/error")
+
+        cantidad = data.get("CantidadProducto")
+        peso = data.get("PesoProducto")
+
+        try:
+            float(cantidad)
+        except:
+            return redirect("/error")
+
+        try:
+            float(peso)
+        except:
             return redirect("/error")
 
         producto.insert(data)
