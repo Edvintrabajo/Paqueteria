@@ -52,20 +52,19 @@ def asignarprecio(id_p_p):
     precio = pedido.get({"CosteTotal"}, {"IDPedido" : id_pedido})
     precio = precio[0]
     peso_total = pedido.get({"PesoTotal"}, {"IDPedido" : id_pedido})
+    coste_producto = peso * cantidad
     if peso_total != False or peso_total != None:
         peso_total = peso_total[0]
 
     if peso_total == None:
-        peso_total = peso
+        peso_total = coste_producto
     else:
-        peso_total += peso
+        peso_total += coste_producto
     
     if precio == None:
         precio = 0
 
-    peso_total = peso_total * cantidad
-
-    precio += peso_total
+    precio += coste_producto
 
     pedido.update({"CosteTotal": precio}, {"IDPedido" : id_pedido})
     pedido.update({"PesoTotal": peso_total}, {"IDPedido" : id_pedido})
