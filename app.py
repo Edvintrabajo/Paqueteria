@@ -1,7 +1,7 @@
 import sys
 sys.path.append('models') # add the models directory to the path
 
-from bottle import run, template, request, get, post, redirect, static_file, error
+from bottle import run, template, request, get, post, redirect, static_file, error, auth_basic
 from models.clientes import Cliente
 from models.pedido import Pedido
 from models.oficinista import Oficinista
@@ -11,10 +11,17 @@ from models.oficinista_pedido import Oficinista_Pedido
 from models.pedido_producto import Pedido_Producto
 from validaciones import *
 
+
+def is_authenticated_user(user, password):
+    if user == "paqueteria":
+        return True
+    return False
+
 #RUTAS CLIENTES
 cliente = Cliente()
 
 @get('/cliente')
+@auth_basic(is_authenticated_user)
 def index_cliente():
     rows= cliente.select()
     return template('main_clientes', rows=cliente.select())
@@ -97,6 +104,7 @@ def delete_item(no):
 pedido = Pedido()
 
 @get('/pedido')
+@auth_basic(is_authenticated_user)
 def index_pedido():
     rows= pedido.select()
     return template('main_pedidos', rows=pedido.select())
@@ -194,6 +202,7 @@ def delete_item(no):
 oficinista = Oficinista()
 
 @get('/oficinista')
+@auth_basic(is_authenticated_user)
 def index_oficinista():
     rows= oficinista.select()
     return template('main_oficinistas', rows=oficinista.select())
@@ -260,6 +269,7 @@ def delete_item(no):
 producto = Producto()
 
 @get('/producto')
+@auth_basic(is_authenticated_user)
 def index_producto():
     rows= producto.select()
     return template('main_productos', rows=producto.select())
@@ -342,6 +352,7 @@ def delete_item(no):
 repartidor = Repartidor()
 
 @get('/repartidor')
+@auth_basic(is_authenticated_user)
 def index_repartidor():
     rows= repartidor.select()
     return template('main_repartidores', rows=repartidor.select())
@@ -408,6 +419,7 @@ def delete_item(no):
 oficinista_pedido = Oficinista_Pedido()
 
 @get('/oficinista_pedido')
+@auth_basic(is_authenticated_user)
 def index_oficinista_pedido():
     rows= oficinista_pedido.select()
     return template('main_oficinista_pedido', rows=oficinista_pedido.select())
@@ -504,6 +516,7 @@ def delete_item(no):
 pedido_producto = Pedido_Producto()
 
 @get('/pedido_producto')
+@auth_basic(is_authenticated_user)
 def index_pedido_producto():
     rows= pedido_producto.select()
     return template('main_pedido_producto', rows=pedido_producto.select())
@@ -609,15 +622,18 @@ def delete_item(no):
 #RUTAS GLOBALES
 
 @get('/')
+@auth_basic(is_authenticated_user)
 def index():
     return static_file('index.html', root='static')
 
 @get("/static/<filepath:path>")
+@auth_basic(is_authenticated_user)
 def html(filepath):
     return static_file(filepath, root = "static")
 
 #RUTA ERROR
 @error(404)
+@auth_basic(is_authenticated_user)
 def error404(error):
     errormsg = f"Página no encontrada"
     return template('404', error=errormsg)
