@@ -1,7 +1,6 @@
 import sys
-sys.path.append('models') # add the models directory to the path
-sys.path.append('clie') # add the models directory to the path
-
+sys.path.append('models')
+sys.path.append('forms')
 from bottle import run, template, request, get, post, redirect, static_file, error, auth_basic
 from models.clientes import Cliente
 from models.pedido import Pedido

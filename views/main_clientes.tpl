@@ -8,12 +8,32 @@
 
 <div class="contenedor-todo">
     <p>Añadir un nuevo cliente:</p>
-    <form class="form1" action="/cliente" method="POST">
-        <input type="text" placeholder="DNI" size="10" name="dni">
-        <input type="text" placeholder="Nombre" size="10" name="Nombre">
-        <input type="text" placeholder="Apellido" size="10" name="Apellido">
-        <input type="text" placeholder="Direccion" size="20" name="Direccion">
-        <input type="submit" name="save" value="Añadir">
+    <form action="/cliente" method="POST">
+
+        <div class="div">
+
+            <div>
+                {{ form.dni }}
+            </div>
+
+            <div>
+                {{ form.nombre }}
+            </div>
+
+            <div>
+                {{ form.apellido }}
+            </div>
+            
+            <div>
+                {{ form.direccion }}
+            </div>
+
+            <div>
+                {{ form.save }}
+            </div>
+
+        </div>
+
     </form>
     <p>Los clientes actuales son los siguientes:</p>
     <div class="contenedor-tabla">
