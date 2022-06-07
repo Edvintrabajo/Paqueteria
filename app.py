@@ -1,5 +1,6 @@
 import sys
 sys.path.append('models') # add the models directory to the path
+sys.path.append('clie') # add the models directory to the path
 
 from bottle import run, template, request, get, post, redirect, static_file, error, auth_basic
 from models.clientes import Cliente
@@ -10,6 +11,7 @@ from models.repartidor import Repartidor
 from models.oficinista_pedido import Oficinista_Pedido
 from models.pedido_producto import Pedido_Producto
 from validaciones import *
+from forms.cliente import RegistrationForm
 
 
 def is_authenticated_user(user, password):
@@ -23,30 +25,26 @@ cliente = Cliente()
 @get('/cliente')
 @auth_basic(is_authenticated_user)
 def index_cliente():
-    rows= cliente.select()
-    return template('main_clientes', rows=cliente.select())
+    return template('main_clientes', rows=cliente.select(), form = RegistrationForm(request.POST))
 
 @post('/cliente')
 def new_task_save():
-    if request.POST.save:  # the user clicked the `save` button
-        data = {
-            'DNIcliente': request.POST.dni.strip(), 
-            'Nombre': request.POST.Nombre.strip(),
-            'Apellidos': request.POST.Apellido.strip(),
-            'DireccionCliente': request.POST.Direccion.strip()
+    form = RegistrationForm(request.POST) 
+    if form.save.data and form.validate():
+        form_data = {
+            'DNIcliente': form.dni.data, 
+            'Nombre': form.nombre.data,
+            'Apellidos': form.apellido.data,
+            'DireccionCliente': form.direccion.data
         }
 
-        if data.get('DNIcliente') == "" or data.get('Nombre') == "" or data.get('Apellidos') == "" or data.get('DireccionCliente') == "":
-            errormsg = "Has dejado algún campo vacio"
-            return template('404', error=errormsg)
+        form_data.update({'DNIcliente': form_data.get("DNIcliente").upper()})
 
-        data.update({'DNIcliente': data.get("DNIcliente").upper()})
-
-        if validaciondni(data.get('DNIcliente')) == False:
+        if validaciondni(form_data.get('DNIcliente')) == False:
             errormsg = f"No has introducido un DNI válido"
             return template('404', error=errormsg)
 
-        cliente.insert(data)
+        cliente.insert(form_data)
 
         # se muestra el resultado de la operación
         return redirect('/cliente')
@@ -106,7 +104,6 @@ pedido = Pedido()
 @get('/pedido')
 @auth_basic(is_authenticated_user)
 def index_pedido():
-    rows= pedido.select()
     return template('main_pedidos', rows=pedido.select())
 
 @post('/pedido')
@@ -204,7 +201,6 @@ oficinista = Oficinista()
 @get('/oficinista')
 @auth_basic(is_authenticated_user)
 def index_oficinista():
-    rows= oficinista.select()
     return template('main_oficinistas', rows=oficinista.select())
 
 @post('/oficinista')
@@ -271,7 +267,6 @@ producto = Producto()
 @get('/producto')
 @auth_basic(is_authenticated_user)
 def index_producto():
-    rows= producto.select()
     return template('main_productos', rows=producto.select())
 
 @post('/producto')
@@ -354,7 +349,6 @@ repartidor = Repartidor()
 @get('/repartidor')
 @auth_basic(is_authenticated_user)
 def index_repartidor():
-    rows= repartidor.select()
     return template('main_repartidores', rows=repartidor.select())
 
 @post('/repartidor')
@@ -421,7 +415,6 @@ oficinista_pedido = Oficinista_Pedido()
 @get('/oficinista_pedido')
 @auth_basic(is_authenticated_user)
 def index_oficinista_pedido():
-    rows= oficinista_pedido.select()
     return template('main_oficinista_pedido', rows=oficinista_pedido.select())
 
 @post('/oficinista_pedido')
@@ -518,7 +511,6 @@ pedido_producto = Pedido_Producto()
 @get('/pedido_producto')
 @auth_basic(is_authenticated_user)
 def index_pedido_producto():
-    rows= pedido_producto.select()
     return template('main_pedido_producto', rows=pedido_producto.select())
 
 @post('/pedido_producto')
