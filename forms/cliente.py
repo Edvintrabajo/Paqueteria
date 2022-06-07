@@ -2,9 +2,8 @@ from wtforms import Form, StringField, SubmitField, validators
 
 class RegistrationForm(Form):
     
-    dni = StringField('DNI', [validators.Length(9)], default='Introduce el DNI')
-    nombre = StringField('Nombre', [validators.Length(min=4, max=20)], default='Introduce el Nombre')
-    apellido = StringField('Apellido', [validators.Length(min=4, max=30)], default='Introduce el Apellido')
-    direccion = StringField('Direccion', [validators.Length(min=4, max=50)], default='Introduce el Direccion')
+    dni = StringField('dni', [validators.Length(min=9, max=9), validators.DataRequired()], render_kw={"placeholder": "DNI"})
+    nombre = StringField('nombre', [validators.Length(min=4, max=20), validators.DataRequired()], render_kw={"placeholder": "Nombre"})
+    apellido = StringField('apellido', [validators.Length(min=4, max=30), validators.DataRequired()], render_kw={"placeholder": "Apellido"})
+    direccion = StringField('direccion', [validators.Length(min=4, max=50), validators.DataRequired()], render_kw={"placeholder": "Direccion"})
     save = SubmitField('Guardar')
-    cancel = SubmitField('Cancelar')
