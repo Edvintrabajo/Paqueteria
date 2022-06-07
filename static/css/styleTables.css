@@ -44,10 +44,28 @@ p {
     flex-direction: column;
 }
 
+.div {
+    display: flex;
+    flex-direction: column;
+}
+
+.div div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .form1 input {
     margin-bottom: 10px;
     padding: 0.5em;
     border: 1px solid black;
+}
+
+.div input {
+    margin-bottom: 10px;
+    padding: 0.5em;
+    border: 1px solid black;
+    width: 100%;
 }
 
 .contenedor-tabla {
