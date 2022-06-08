@@ -56,7 +56,7 @@ def asignarprecio(id_p_p):
     if peso_total != False or peso_total != None:
         peso_total = peso_total[0]
 
-    if peso_total == None or peso_total == "":
+    if peso_total == None or peso_total == 0:
         peso_total = coste_producto
     else:
         peso_total += coste_producto

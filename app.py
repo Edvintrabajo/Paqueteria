@@ -109,11 +109,8 @@ def index_pedido_get():
 def nuevo_pedido_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
-            'PesoTotal': request.POST.Peso.strip(), 
-            'CosteTotal': request.POST.Coste.strip(),
             'Distancia': request.POST.Distancia.strip(),
             'DireccionEnvio': request.POST.Direccion.strip(),
-            'Estado': request.POST.Estado.strip(),
             'DNIRepartidor': request.POST.DNIRepartidor.strip(),
             'DNIcliente': request.POST.DNICliente.strip()
         }
@@ -139,6 +136,7 @@ def nuevo_pedido_post():
             errormsg = f"No existe el DNI {dnicliente} en la tabla"
             return template('404', error=errormsg)
 
+        pedido.insert(data)
         id_p = pedido.select_maxid()
         id_p = id_p[0]
         asignarprecio_distancia({"IDPedido" : id_p})
