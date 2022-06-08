@@ -15,9 +15,9 @@
             <option value="" selected="true" disabled>Estado</option>
             <option value="A">A (Almacenado)</option>
             <option value="S">S (Salido del Almacén)</option>
-            <option value="E">E (En Camino)</option>
-            <option value="I">I</option>
-        </select>
+            <option value="E">E (Entregado)</option>
+            <option value="I">I (Incidencia)</option>
+          </select>
         <input type="text" placeholder="DNI Repartidor" size="10" maxlength="100" name="DNIRepartidor">
         <input type="text" placeholder="DNI Cliente" size="10" maxlength="100" name="DNICliente">
         <input type="submit" name="save" value="Añadir">

@@ -7,8 +7,8 @@
         <option value="" selected="true" disabled>Estado</option>
         <option value="A">A (Almacenado)</option>
         <option value="S">S (Salido del Almacén)</option>
-        <option value="E">E (En Camino)</option>
-        <option value="I">I</option>
+        <option value="E">E (Entregado)</option>
+        <option value="I">I (Incidencia)</option>
       </select>
       <br>
       <input type="submit" name="save" value="Guardar">
