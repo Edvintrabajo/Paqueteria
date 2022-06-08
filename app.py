@@ -537,6 +537,11 @@ def nuevo_pedido_producto_post():
             errormsg = f"No existe el ID producto {idproducto} en la tabla"
             return template('404', error=errormsg)
 
+        id_productos = pedido_producto.get_all({"IDProducto"}, {"IDProducto" : idproducto})
+        if len(id_productos) != 0:
+            errormsg = f"El ID producto {idproducto} ya está asignado en otro pedido"
+            return template('404', error=errormsg)
+
         else:
             pedido_producto.insert(data)
             id_p_p = pedido_producto.get_p_p({"ID_Pedido_Producto"},[idpedido, idproducto])
@@ -601,6 +606,7 @@ def borrar_pedido_post(no):
     
     if request.POST.delete:
         where = {'ID_Pedido_Producto': no}
+        eliminar_producto_en_pedido({"ID_Pedido_Producto" : no})
         pedido_producto.delete(where)
 
     return redirect('/pedido_producto')
