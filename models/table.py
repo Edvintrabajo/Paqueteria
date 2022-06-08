@@ -111,6 +111,29 @@ class Table(ABC):
                     return False
             return row
 
+    def get_all(self, fields, where):
+        row = None
+        clave = list(where.keys())[0] 
+        value = where[clave]
+        where_clause = f"{clave} LIKE ?"
+        query = f"SELECT {', '.join(fields)} FROM {self._table_name} WHERE {where_clause}"
+        try:
+            conn = self._connect()
+            cursor = conn.cursor()
+            cursor.execute(query, (value,))
+            row = cursor.fetchall()
+            conn.close()
+        
+        except sqlite3.Error as error:
+            print("Error while executing sqlite script", error)
+        
+        finally:
+            if conn:
+                conn.close()
+                if row == None:
+                    return False
+            return row
+
     def get_p_p(self, fields, where):
         row = None
         value1 = where[0]
@@ -149,3 +172,4 @@ class Table(ABC):
             if conn:
                 conn.close()
             return rows
+

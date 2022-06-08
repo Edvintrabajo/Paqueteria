@@ -1,5 +1,7 @@
 import sqlite3
-from table import Table
+import sys
+sys.path.append('models')
+from models.table import Table
 from config.config import DATABASE
 
 TABLE_NAME = 'Pedido_Producto'

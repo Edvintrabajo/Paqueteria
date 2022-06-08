@@ -65,3 +65,29 @@ def asignarprecio(id_p_p):
 
     pedido.update({"CosteTotal": precio}, {"IDPedido" : id_pedido})
     pedido.update({"PesoTotal": peso_total}, {"IDPedido" : id_pedido})
+
+def eliminar_producto_en_pedido(id_p_p):
+    p_p = Pedido_Producto()
+    pedido = Pedido()
+    producto = Producto()
+
+    id_pedido = p_p.get({"IDPedido"}, id_p_p)
+    id_pedido = id_pedido[0]
+    id_producto = p_p.get({"IDProducto"}, id_p_p)
+    id_producto = id_producto[0]
+
+    peso = producto.get({"PesoProducto"}, {"IDProducto" : id_producto})
+    peso = peso[0]
+    precio = pedido.get({"CosteTotal"}, {"IDPedido" : id_pedido})
+    precio = precio[0]
+    peso_total = pedido.get({"PesoTotal"}, {"IDPedido" : id_pedido})
+    peso_total = peso_total[0]
+    cantidad = producto.get({"CantidadProducto"}, {"IDProducto" : id_producto})
+    cantidad = cantidad[0]
+    peso_producto = peso * cantidad
+
+    peso_total -= peso_producto
+    precio -= peso_producto
+
+    pedido.update({"CosteTotal": precio}, {"IDPedido" : id_pedido})
+    pedido.update({"PesoTotal": peso_total}, {"IDPedido" : id_pedido})
