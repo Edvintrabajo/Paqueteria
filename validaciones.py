@@ -6,6 +6,10 @@ from models.table import Table
 from models.pedido_producto import *
 
 def validaciondni(dni): 
+
+    if len(dni) != 9:
+        return False
+
     if dni[8].isdigit():
         return False
 

@@ -23,11 +23,11 @@ cliente = Cliente()
 
 @get('/cliente')
 @auth_basic(is_authenticated_user)
-def index_cliente():
+def index_cliente_get():
     return template('main_clientes', rows=cliente.select(), form = RegistrationForm(request.POST))
 
 @post('/cliente')
-def new_task_save():
+def nuevo_cliente_post():
     form = RegistrationForm(request.POST) 
     if form.save.data and form.validate():
         form_data = {
@@ -49,14 +49,14 @@ def new_task_save():
         return redirect('/cliente')
 
 @get('/edit_cliente/<no>')
-def edit_item_form(no):
+def editar_cliente_get(no):
     fields = ['Nombre', 'Apellidos', 'DireccionCliente']
     where = {'DNIcliente': no}
     cur_data = cliente.get(fields, where)  # get the current data for the item we are editing
     return template('edit_clientes', old=cur_data, no=no)
 
 @post('/edit_cliente/<no>')
-def edit_item(no):
+def editar_cliente_post(no):
     
     if request.POST.save:
         data = {
@@ -80,14 +80,14 @@ def edit_item(no):
     return redirect('/cliente')
 
 @get('/delete_cliente/<no>')
-def delete_item_form(no):
+def borrar_cliente_get(no):
     fields = ['DNIcliente']
     where = {'DNIcliente': no}
     cur_data = cliente.get(fields, where)  # get the current data for the item we are editing
     return template('delete_clientes', old=cur_data, no=no)
 
 @post('/delete_cliente/<no>')
-def delete_item(no):
+def borrar_cliente_post(no):
     
     if request.POST.delete:
         where = {'DNIcliente': no}
@@ -102,11 +102,11 @@ pedido = Pedido()
 
 @get('/pedido')
 @auth_basic(is_authenticated_user)
-def index_pedido():
+def index_pedido_get(_get):
     return template('main_pedidos', rows=pedido.select())
 
 @post('/pedido')
-def new_task_save():
+def nuevo_pedido_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'PesoTotal': request.POST.Peso.strip(), 
@@ -148,14 +148,14 @@ def new_task_save():
         return redirect('/pedido')
 
 @get('/edit_pedido/<no:int>')
-def edit_item_form(no):
+def editar_pedido_get(no):
     fields = ['Estado']
     where = {'IDPedido': no}
     cur_data = pedido.get(fields, where)  # get the current data for the item we are editing
     return template('edit_pedido', old=cur_data, no=no)
 
 @post('/edit_pedido/<no:int>')
-def edit_item(no):
+def editar_pedido_post(no):
     
     if request.POST.save:
         data = {
@@ -175,14 +175,14 @@ def edit_item(no):
     return redirect('/pedido')
 
 @get('/delete_pedido/<no:int>')
-def delete_item_form(no):
+def borrar_pedido_get(no):
     fields = ['IDPedido']
     where = {'IDPedido': no}
     cur_data = pedido.get(fields, where)  # get the current data for the item we are editing
     return template('delete_pedido', old=cur_data, no=no)
 
 @post('/delete_pedido/<no:int>')
-def delete_item(no):
+def borrar_pedido_post(no):
     
     if request.POST.delete:
         where = {'IDPedido': no}
@@ -199,11 +199,11 @@ oficinista = Oficinista()
 
 @get('/oficinista')
 @auth_basic(is_authenticated_user)
-def index_oficinista():
+def index_oficinista_get():
     return template('main_oficinistas', rows=oficinista.select())
 
 @post('/oficinista')
-def new_task_save():
+def nuevo_oficinista_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'Nombre': request.POST.Nombre.strip(),
@@ -219,14 +219,14 @@ def new_task_save():
         return redirect('/oficinista')
 
 @get('/edit_oficinista/<no:int>')
-def edit_item_form(no):
+def editar_oficinista_get(no):
     fields = ['Nombre']
     where = {'ID_Oficinista': no}
     cur_data = oficinista.get(fields, where)  # get the current data for the item we are editing
     return template('edit_oficinistas', old=cur_data, no=no)
 
 @post('/edit_oficinista/<no:int>')
-def edit_item(no):
+def editar_oficinista_post(no):
     
     if request.POST.save:
         data = {
@@ -242,14 +242,14 @@ def edit_item(no):
     return redirect('/oficinista')
 
 @get('/delete_oficinista/<no:int>')
-def delete_item_form(no):
+def borrar_oficinista_get(no):
     fields = ['ID_Oficinista']
     where = {'ID_Oficinista': no}
     cur_data = oficinista.get(fields, where)  # get the current data for the item we are editing
     return template('delete_oficinistas', old=cur_data, no=no)
 
 @post('/delete_oficinista/<no:int>')
-def delete_item(no):
+def borrar_oficinista_post(no):
     
     if request.POST.delete:
         where = {'ID_Oficinista': no}
@@ -265,11 +265,11 @@ producto = Producto()
 
 @get('/producto')
 @auth_basic(is_authenticated_user)
-def index_producto():
+def index_producto_get():
     return template('main_productos', rows=producto.select())
 
 @post('/producto')
-def new_task_save():
+def nuevo_producto_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'NombreProducto': request.POST.Nombre.strip(),
@@ -302,14 +302,14 @@ def new_task_save():
         return redirect('/producto')
 
 @get('/edit_producto/<no:int>')
-def edit_item_form(no):
+def editar_producto_get(no):
     fields = ['NombreProducto']
     where = {'IDProducto': no}
     cur_data = producto.get(fields, where)  # get the current data for the item we are editing
     return template('edit_productos', old=cur_data, no=no)
 
 @post('/edit_producto/<no:int>')
-def edit_item(no):
+def editar_producto_post(no):
     
     if request.POST.save:
         data = {
@@ -325,14 +325,14 @@ def edit_item(no):
     return redirect('/producto')
 
 @get('/delete_producto/<no:int>')
-def delete_item_form(no):
+def borrar_producto_get(no):
     fields = ['IDProducto']
     where = {'IDProducto': no}
     cur_data = producto.get(fields, where)  # get the current data for the item we are editing
     return template('delete_productos', old=cur_data, no=no)
 
 @post('/delete_producto/<no:int>')
-def delete_item(no):
+def borrar_producto_post(no):
     
     if request.POST.delete:
         where = {'IDProducto': no}
@@ -347,11 +347,11 @@ repartidor = Repartidor()
 
 @get('/repartidor')
 @auth_basic(is_authenticated_user)
-def index_repartidor():
+def index_repartidor_get():
     return template('main_repartidores', rows=repartidor.select())
 
 @post('/repartidor')
-def new_task_save():
+def nuevo_repartidor_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'DNIRepartidor': request.POST.dni.strip(), 
@@ -368,14 +368,14 @@ def new_task_save():
         return redirect('/repartidor')
 
 @get('/edit_repartidor/<no>')
-def edit_item_form(no):
+def editar_repartidor_get(no):
     fields = ['NombreRepartidor']
     where = {'DNIRepartidor': no}
     cur_data = repartidor.get(fields, where)  # get the current data for the item we are editing
     return template('edit_repartidor', old=cur_data, no=no)
 
 @post('/edit_repartidor/<no>')
-def edit_item(no):
+def editar_repartidor_post(no):
     
     if request.POST.save:
         data = {
@@ -391,14 +391,14 @@ def edit_item(no):
     return redirect('/repartidor')
 
 @get('/delete_repartidor/<no>')
-def delete_item_form(no):
+def borrar_repartidor_get(no):
     fields = ['DNIrepartidor']
     where = {'DNIrepartidor': no}
     cur_data = repartidor.get(fields, where)  # get the current data for the item we are editing
     return template('delete_repartidor', old=cur_data, no=no)
 
 @post('/delete_repartidor/<no>')
-def delete_item(no):
+def borrar_repartidor_post(no):
     
     if request.POST.delete:
         where = {'DNIrepartidor': no}
@@ -413,11 +413,11 @@ oficinista_pedido = Oficinista_Pedido()
 
 @get('/oficinista_pedido')
 @auth_basic(is_authenticated_user)
-def index_oficinista_pedido():
+def index_oficinista_pedido_get():
     return template('main_oficinista_pedido', rows=oficinista_pedido.select())
 
 @post('/oficinista_pedido')
-def new_task_save():
+def nuevo_oficinista_pedido_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'IDPedido': request.POST.IDPedido.strip(),
@@ -453,14 +453,14 @@ def new_task_save():
         return redirect('/oficinista_pedido')
 
 @get('/edit_oficinista_pedido/<no:int>')
-def edit_item_form(no):
+def editar_oficinista_pedido_get(no):
     fields = ['ID_Oficinista']
     where = {'IDPedido': no}
     cur_data = oficinista_pedido.get(fields, where)  # get the current data for the item we are editing
     return template('edit_oficinista_pedido', old=cur_data, no=no)
 
 @post('/edit_oficinista_pedido/<no:int>')
-def edit_item(no):
+def editar_oficinista_pedido_post(no):
     
     if request.POST.save:
         data = {
@@ -487,14 +487,14 @@ def edit_item(no):
 
 
 @get('/delete_oficinista_pedido/<no:int>')
-def delete_item_form(no):
+def borrar_oficinista_get(no):
     fields = ['IDPedido']
     where = {'IDPedido': no}
     cur_data = oficinista_pedido.get(fields, where)  # get the current data for the item we are editing
     return template('delete_oficinista_pedido', old=cur_data, no=no)
 
 @post('/delete_oficinista_pedido/<no:int>')
-def delete_item(no):
+def borrar_oficinista_post(no):
     
     if request.POST.delete:
         where = {'IDPedido': no}
@@ -509,11 +509,11 @@ pedido_producto = Pedido_Producto()
 
 @get('/pedido_producto')
 @auth_basic(is_authenticated_user)
-def index_pedido_producto():
+def index_pedido_producto_get():
     return template('main_pedido_producto', rows=pedido_producto.select())
 
 @post('/pedido_producto')
-def new_task_save():
+def nuevo_pedido_producto_post():
     if request.POST.save:  # the user clicked the `save` button
         data = {
             'IDPedido': request.POST.id_pedido.strip(), 
@@ -549,14 +549,14 @@ def new_task_save():
         return redirect('/pedido_producto')
 
 @get('/edit_pedido_producto/<no:int>')
-def edit_item_form(no):
+def editar_pedido_producto_get(no):
     fields = ['IDPedido', 'IDProducto']
     where = {'ID_Pedido_Producto': no}
     cur_data = pedido_producto.get(fields, where)  # get the current data for the item we are editing
     return template('edit_pedido_producto', old=cur_data, no=no)
 
 @post('/edit_pedido_producto/<no:int>')
-def edit_item(no):
+def editar_pedido_producto_post(no):
     
     if request.POST.save:
         data = {
@@ -594,14 +594,14 @@ def edit_item(no):
     return redirect('/pedido_producto')
 
 @get('/delete_pedido_producto/<no:int>')
-def delete_item_form(no):
+def borrar_pedido_get(no):
     fields = ['ID_Pedido_Producto']
     where = {'ID_Pedido_Producto': no}
     cur_data = pedido_producto.get(fields, where)  # get the current data for the item we are editing
     return template('delete_pedido_producto', old=cur_data, no=no)
 
 @post('/delete_pedido_producto/<no:int>')
-def delete_item(no):
+def borrar_pedido_post(no):
     
     if request.POST.delete:
         where = {'ID_Pedido_Producto': no}
@@ -614,8 +614,8 @@ def delete_item(no):
 
 @get('/')
 @auth_basic(is_authenticated_user)
-def index():
-    return static_file('index.html', root='static')
+def index_get():
+    return static_file('index.html', _getroot='static')
 
 @get("/static/<filepath:path>")
 @auth_basic(is_authenticated_user)
