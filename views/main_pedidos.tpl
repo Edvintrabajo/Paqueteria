@@ -11,7 +11,13 @@
     <form class="form1" action="/pedido" method="POST">
         <input type="text" placeholder="Distancia" size="10" maxlength="100" name="Distancia">
         <input type="text" placeholder="Direccion" size="10" maxlength="100" name="Direccion">
-        <input type="text" placeholder="Estado" size="10" maxlength="100" name="Estado">
+        <select name="Estado">
+            <option value="" selected="true" disabled>Estado</option>
+            <option value="A">A (Almacenado)</option>
+            <option value="S">S (Salido del Almacén)</option>
+            <option value="E">E (En Camino)</option>
+            <option value="I">I</option>
+        </select>
         <input type="text" placeholder="DNI Repartidor" size="10" maxlength="100" name="DNIRepartidor">
         <input type="text" placeholder="DNI Cliente" size="10" maxlength="100" name="DNICliente">
         <input type="submit" name="save" value="Añadir">

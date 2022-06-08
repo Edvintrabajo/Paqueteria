@@ -7,7 +7,9 @@
     <meta name=”keywords” content="paqueteria, envios, canarias">
     <meta name="description" content="Una Pagina Web sobre Paqueteria">
     <meta name="author" content="Edvin, Mario, Miguel">
+    <!--NORMZALIZE-->
     <link rel="stylesheet" href="/static/css/normalize.css">
+    
     <!--LINK CSS-->
     <link rel="stylesheet" href="/static/css/styleTables.css">
     <link rel="stylesheet" href="/static/css/styleEdits.css">

@@ -35,6 +35,11 @@ p {
     text-align: center;
 }
 
+select {
+    margin-bottom: 10px;
+    padding: 0.5em;
+}
+
 .contenedor-todo {
     margin: 0 20px 20px 20px;
 }

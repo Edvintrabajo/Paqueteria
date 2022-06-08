@@ -102,7 +102,7 @@ pedido = Pedido()
 
 @get('/pedido')
 @auth_basic(is_authenticated_user)
-def index_pedido_get(_get):
+def index_pedido_get():
     return template('main_pedidos', rows=pedido.select())
 
 @post('/pedido')
@@ -139,10 +139,9 @@ def nuevo_pedido_post():
             errormsg = f"No existe el DNI {dnicliente} en la tabla"
             return template('404', error=errormsg)
 
-        else: 
-            id_p = pedido.select_maxid()
-            id_p = id_p[0]
-            asignarprecio_distancia({"IDPedido" : id_p})
+        id_p = pedido.select_maxid()
+        id_p = id_p[0]
+        asignarprecio_distancia({"IDPedido" : id_p})
 
         # se muestra el resultado de la operación
         return redirect('/pedido')
@@ -163,8 +162,7 @@ def editar_pedido_post(no):
         }
 
         if data.get('Estado') == "":
-            errormsg = f"No has introducido ningún estado"
-            return template('404', error=errormsg)
+            return redirect('/pedido')
 
         data.update({'Estado': data.get("Estado").upper()})
 
@@ -615,7 +613,7 @@ def borrar_pedido_post(no):
 @get('/')
 @auth_basic(is_authenticated_user)
 def index_get():
-    return static_file('index.html', _getroot='static')
+    return static_file('index.html', root='static')
 
 @get("/static/<filepath:path>")
 @auth_basic(is_authenticated_user)
