@@ -81,8 +81,7 @@ def create_database(db_file):
     conn.execute("""INSERT INTO "Pedido_Producto" ("ID_Pedido_Producto","IDPedido","IDProducto") VALUES (1,1,1),
     (2,1,2),
     (3,2,3),
-    (4,2,4),
-    (5,3,1)""")
+    (4,2,4)""")
 
     conn.execute('''CREATE TABLE IF NOT EXISTS 'EdicionPedido'(
         'Numero_de_pedido' VARCHAR(50),

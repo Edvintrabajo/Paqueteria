@@ -476,6 +476,7 @@ def editar_oficinista_pedido_post(no):
             return template('404', error=errormsg)
 
         else:
+            where = {'IDPedido': no}
             oficinista_pedido.update(data, where)
         
     return redirect('/oficinista_pedido')
@@ -565,14 +566,14 @@ def editar_pedido_producto_post(no):
             'IDProducto': request.POST.id_producto.strip()
         }
 
+        idpedido = data.get("IDPedido")
+        idproducto = data.get("IDProducto")
+
         if data.get('IDPedido') == "":
             del data['IDPedido']
 
         if data.get('IDProducto') == "":
             del data['IDProducto']
-
-        idpedido = data.get("IDPedido")
-        idproducto = data.get("IDProducto")
 
         where = {'IDPedido': idpedido}
 
@@ -583,14 +584,26 @@ def editar_pedido_producto_post(no):
 
         where = {'IDProducto': idproducto}
 
-        if producto.get(['IDProducto'], where) == False:
+        if idproducto != "":
+            if producto.get(['IDProducto'], where) == False:
 
-            errormsg = f"No existe el ID producto {idproducto} en la tabla"
-            return template('404', error=errormsg)
+                errormsg = f"No existe el ID producto {idproducto} en la tabla"
+                return template('404', error=errormsg)
+
+        idproducto_antiguo = pedido_producto.get(['IDProducto'], {'ID_Pedido_Producto' : no})
+        idproducto_antiguo = str(idproducto_antiguo[0])
+
+        if idproducto_antiguo != idproducto:
+
+            id_productos = pedido_producto.get_all({"IDProducto"}, {"IDProducto" : idproducto})
+            if len(id_productos) != 0:
+                errormsg = f"El ID producto {idproducto} ya está asignado en otro pedido"
+                return template('404', error=errormsg)
 
         where1 = {'ID_Pedido_Producto': no}
-
+        eliminar_producto_en_pedido({"ID_Pedido_Producto" : no})
         pedido_producto.update(data, where1)
+        asignarprecio({"ID_Pedido_Producto" : no})
         
     return redirect('/pedido_producto')
 
