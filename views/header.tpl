@@ -9,6 +9,9 @@
     <meta name="author" content="Edvin, Mario, Miguel">
     <!--NORMZALIZE-->
     <link rel="stylesheet" href="/static/css/normalize.css">
+
+    <!--FAVICON-->
+    <link rel="shortcut icon" href="/static/favicon.ico">
     
     <!--LINK CSS-->
     <link rel="stylesheet" href="/static/css/styleTables.css">
