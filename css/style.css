@@ -31,7 +31,7 @@ img {
 }
 
 .img-header {
-    background-image: url(/static/img/header.jpg);
+    background-image: url(../img/header.jpg);
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
