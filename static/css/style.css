@@ -172,12 +172,6 @@ img {
   @media screen and (min-width:768px) {
 
     .contenido-header {
-      color: midnightblue;
-      font-family: 'Lobster', cursive;
-      display: flex;
-      flex-direction: column;
-      text-align: center;
-      align-items: center;
       font-size: 3rem;
       margin-top: 240px;
   }
@@ -194,28 +188,7 @@ img {
     display: none;
   }
 
-  .nav-links{
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: flex-end;
-    background: white;
-  }
-
-  .link-item{
-    display: inline-block;
-    margin-top: 0;
-    margin-right: 2rem;
-  }
-
   .contenido-header {
-    color: midnightblue;
-    font-family: 'Lobster', cursive;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
     font-size: 4rem;
     margin-top: 240px;
   }
