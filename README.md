@@ -2,7 +2,7 @@
 Este proyecto trata sobre una paqueteria.
 
 ## Descargar módulos necesarios
-Para descargar los módulos necesarios, haz un pip install -r requirements.txt
+Para descargar los módulos, haz un pip install -r requirements.txt
 para que se te descargen los modulos necesarios en tu pc.
 
 Si no quieres descargarlos en tu pc, crea un entorno de trabajo virtual con python -m venv .venv
